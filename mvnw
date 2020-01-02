@@ -8,7 +8,11 @@
 # "License"); you may not use this file except in compliance
 # with the License.  You may obtain a copy of the License at
 #
+<<<<<<< HEAD
 #    https://www.apache.org/licenses/LICENSE-2.0
+=======
+#    http://www.apache.org/licenses/LICENSE-2.0
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
 #
 # Unless required by applicable law or agreed to in writing,
 # software distributed under the License is distributed on an
@@ -34,6 +38,7 @@
 #   MAVEN_SKIP_RC - flag to disable loading of mavenrc files
 # ----------------------------------------------------------------------------
 
+<<<<<<< HEAD
 if [ -z "$MAVEN_SKIP_RC" ]; then
 
   if [ -f /etc/mavenrc ]; then
@@ -41,12 +46,22 @@ if [ -z "$MAVEN_SKIP_RC" ]; then
   fi
 
   if [ -f "$HOME/.mavenrc" ]; then
+=======
+if [ -z "$MAVEN_SKIP_RC" ] ; then
+
+  if [ -f /etc/mavenrc ] ; then
+    . /etc/mavenrc
+  fi
+
+  if [ -f "$HOME/.mavenrc" ] ; then
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
     . "$HOME/.mavenrc"
   fi
 
 fi
 
 # OS specific support.  $var _must_ be set to either true or false.
+<<<<<<< HEAD
 cygwin=false
 darwin=false
 mingw=false
@@ -74,10 +89,39 @@ if [ -z "$JAVA_HOME" ]; then
 fi
 
 if [ -z "$M2_HOME" ]; then
+=======
+cygwin=false;
+darwin=false;
+mingw=false
+case "`uname`" in
+  CYGWIN*) cygwin=true ;;
+  MINGW*) mingw=true;;
+  Darwin*) darwin=true
+    # Use /usr/libexec/java_home if available, otherwise fall back to /Library/Java/Home
+    # See https://developer.apple.com/library/mac/qa/qa1170/_index.html
+    if [ -z "$JAVA_HOME" ]; then
+      if [ -x "/usr/libexec/java_home" ]; then
+        export JAVA_HOME="`/usr/libexec/java_home`"
+      else
+        export JAVA_HOME="/Library/Java/Home"
+      fi
+    fi
+    ;;
+esac
+
+if [ -z "$JAVA_HOME" ] ; then
+  if [ -r /etc/gentoo-release ] ; then
+    JAVA_HOME=`java-config --jre-home`
+  fi
+fi
+
+if [ -z "$M2_HOME" ] ; then
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
   ## resolve links - $0 may be a link to maven's home
   PRG="$0"
 
   # need this for relative symlinks
+<<<<<<< HEAD
   while [ -h "$PRG" ]; do
     ls=$(ls -ld "$PRG")
     link=$(expr "$ls" : '.*-> \(.*\)$')
@@ -94,12 +138,31 @@ if [ -z "$M2_HOME" ]; then
 
   # make it fully qualified
   M2_HOME=$(cd "$M2_HOME" && pwd)
+=======
+  while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+      PRG="$link"
+    else
+      PRG="`dirname "$PRG"`/$link"
+    fi
+  done
+
+  saveddir=`pwd`
+
+  M2_HOME=`dirname "$PRG"`/..
+
+  # make it fully qualified
+  M2_HOME=`cd "$M2_HOME" && pwd`
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
 
   cd "$saveddir"
   # echo Using m2 at $M2_HOME
 fi
 
 # For Cygwin, ensure paths are in UNIX format before anything is touched
+<<<<<<< HEAD
 if $cygwin; then
   [ -n "$M2_HOME" ] &&
     M2_HOME=$(cygpath --unix "$M2_HOME")
@@ -121,10 +184,28 @@ if $mingw; then
       cd "$JAVA_HOME"
       pwd
     ))"
+=======
+if $cygwin ; then
+  [ -n "$M2_HOME" ] &&
+    M2_HOME=`cygpath --unix "$M2_HOME"`
+  [ -n "$JAVA_HOME" ] &&
+    JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
+  [ -n "$CLASSPATH" ] &&
+    CLASSPATH=`cygpath --path --unix "$CLASSPATH"`
+fi
+
+# For Migwn, ensure paths are in UNIX format before anything is touched
+if $mingw ; then
+  [ -n "$M2_HOME" ] &&
+    M2_HOME="`(cd "$M2_HOME"; pwd)`"
+  [ -n "$JAVA_HOME" ] &&
+    JAVA_HOME="`(cd "$JAVA_HOME"; pwd)`"
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
   # TODO classpath?
 fi
 
 if [ -z "$JAVA_HOME" ]; then
+<<<<<<< HEAD
   javaExecutable="$(which javac)"
   if [ -n "$javaExecutable" ] && ! [ "$(expr \"$javaExecutable\" : '\([^ ]*\)')" = "no" ]; then
     # readlink(1) is not available as standard on Solaris 10.
@@ -138,32 +219,65 @@ if [ -z "$JAVA_HOME" ]; then
       fi
       javaHome="$(dirname \"$javaExecutable\")"
       javaHome=$(expr "$javaHome" : '\(.*\)/bin')
+=======
+  javaExecutable="`which javac`"
+  if [ -n "$javaExecutable" ] && ! [ "`expr \"$javaExecutable\" : '\([^ ]*\)'`" = "no" ]; then
+    # readlink(1) is not available as standard on Solaris 10.
+    readLink=`which readlink`
+    if [ ! `expr "$readLink" : '\([^ ]*\)'` = "no" ]; then
+      if $darwin ; then
+        javaHome="`dirname \"$javaExecutable\"`"
+        javaExecutable="`cd \"$javaHome\" && pwd -P`/javac"
+      else
+        javaExecutable="`readlink -f \"$javaExecutable\"`"
+      fi
+      javaHome="`dirname \"$javaExecutable\"`"
+      javaHome=`expr "$javaHome" : '\(.*\)/bin'`
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
       JAVA_HOME="$javaHome"
       export JAVA_HOME
     fi
   fi
 fi
 
+<<<<<<< HEAD
 if [ -z "$JAVACMD" ]; then
   if [ -n "$JAVA_HOME" ]; then
     if [ -x "$JAVA_HOME/jre/sh/java" ]; then
+=======
+if [ -z "$JAVACMD" ] ; then
+  if [ -n "$JAVA_HOME"  ] ; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
       # IBM's JDK on AIX uses strange locations for the executables
       JAVACMD="$JAVA_HOME/jre/sh/java"
     else
       JAVACMD="$JAVA_HOME/bin/java"
     fi
   else
+<<<<<<< HEAD
     JAVACMD="$(which java)"
   fi
 fi
 
 if [ ! -x "$JAVACMD" ]; then
+=======
+    JAVACMD="`which java`"
+  fi
+fi
+
+if [ ! -x "$JAVACMD" ] ; then
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
   echo "Error: JAVA_HOME is not defined correctly." >&2
   echo "  We cannot execute $JAVACMD" >&2
   exit 1
 fi
 
+<<<<<<< HEAD
 if [ -z "$JAVA_HOME" ]; then
+=======
+if [ -z "$JAVA_HOME" ] ; then
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
   echo "Warning: JAVA_HOME environment variable is not set."
 fi
 
@@ -173,24 +287,38 @@ CLASSWORLDS_LAUNCHER=org.codehaus.plexus.classworlds.launcher.Launcher
 # first directory with .mvn subdirectory is considered project base directory
 find_maven_basedir() {
 
+<<<<<<< HEAD
   if [ -z "$1" ]; then
+=======
+  if [ -z "$1" ]
+  then
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
     echo "Path not specified to find_maven_basedir"
     return 1
   fi
 
   basedir="$1"
   wdir="$1"
+<<<<<<< HEAD
   while [ "$wdir" != '/' ]; do
     if [ -d "$wdir"/.mvn ]; then
+=======
+  while [ "$wdir" != '/' ] ; do
+    if [ -d "$wdir"/.mvn ] ; then
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
       basedir=$wdir
       break
     fi
     # workaround for JBEAP-8937 (on Solaris 10/Sparc)
     if [ -d "${wdir}" ]; then
+<<<<<<< HEAD
       wdir=$(
         cd "$wdir/.."
         pwd
       )
+=======
+      wdir=`cd "$wdir/.."; pwd`
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
     fi
     # end of workaround
   done
@@ -200,6 +328,7 @@ find_maven_basedir() {
 # concatenates all lines of a file
 concat_lines() {
   if [ -f "$1" ]; then
+<<<<<<< HEAD
     echo "$(tr -s '\n' ' ' <"$1")"
   fi
 }
@@ -275,11 +404,25 @@ export MAVEN_PROJECTBASEDIR=${MAVEN_BASEDIR:-"$BASE_DIR"}
 if [ "$MVNW_VERBOSE" = true ]; then
   echo $MAVEN_PROJECTBASEDIR
 fi
+=======
+    echo "$(tr -s '\n' ' ' < "$1")"
+  fi
+}
+
+BASE_DIR=`find_maven_basedir "$(pwd)"`
+if [ -z "$BASE_DIR" ]; then
+  exit 1;
+fi
+
+export MAVEN_PROJECTBASEDIR=${MAVEN_BASEDIR:-"$BASE_DIR"}
+echo $MAVEN_PROJECTBASEDIR
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
 MAVEN_OPTS="$(concat_lines "$MAVEN_PROJECTBASEDIR/.mvn/jvm.config") $MAVEN_OPTS"
 
 # For Cygwin, switch paths to Windows format before running java
 if $cygwin; then
   [ -n "$M2_HOME" ] &&
+<<<<<<< HEAD
     M2_HOME=$(cygpath --path --windows "$M2_HOME")
   [ -n "$JAVA_HOME" ] &&
     JAVA_HOME=$(cygpath --path --windows "$JAVA_HOME")
@@ -287,6 +430,15 @@ if $cygwin; then
     CLASSPATH=$(cygpath --path --windows "$CLASSPATH")
   [ -n "$MAVEN_PROJECTBASEDIR" ] &&
     MAVEN_PROJECTBASEDIR=$(cygpath --path --windows "$MAVEN_PROJECTBASEDIR")
+=======
+    M2_HOME=`cygpath --path --windows "$M2_HOME"`
+  [ -n "$JAVA_HOME" ] &&
+    JAVA_HOME=`cygpath --path --windows "$JAVA_HOME"`
+  [ -n "$CLASSPATH" ] &&
+    CLASSPATH=`cygpath --path --windows "$CLASSPATH"`
+  [ -n "$MAVEN_PROJECTBASEDIR" ] &&
+    MAVEN_PROJECTBASEDIR=`cygpath --path --windows "$MAVEN_PROJECTBASEDIR"`
+>>>>>>> 906e6308ddcd52a9b98b9a19c0d7b787f62e431b
 fi
 
 WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
